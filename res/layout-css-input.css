@@ -1,0 +1,10 @@
+div {
+  display: block;
+  padding: 12px;
+  background: #ff00ff;
+}
+
+.wider {
+  padding: 30px;
+  background: #00ffff;
+}

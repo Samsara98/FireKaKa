@@ -1,0 +1,14 @@
+div {
+    display: block;
+    padding-right: 12px;
+    padding-left: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.a { background: #ff0000; }
+.b { background: #ffa500; }
+.c { background: #ffff00; }
+.d { background: #008000; }
+.e { background: #0000ff; }
+.f { background: #4b0082; }
+.g { background: #800080; }

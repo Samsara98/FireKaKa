@@ -1,0 +1,12 @@
+<html>
+  <body>
+    <h1 margin="auto" color="#cc0000">
+      <text></text>
+    </h1>
+    <div margin-bottom="20px" padding="10px">
+      <span>
+        <text></text>
+      </span>
+    </div>
+  </body>
+</html>
