@@ -7,13 +7,10 @@ import dom.TextNode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
-public class HTMLParser {
+public class HTMLParser extends Parser{
 
-    String input;
-    int pos = 0;
 
     public HTMLParser() {
     }
@@ -94,15 +91,6 @@ public class HTMLParser {
     }
 
 
-    private String consumeWhile(Predicate<Character> predicate,char c) {
-
-        StringBuilder stringBuffer = new StringBuilder();
-        while (!finish() && predicate.test(c)) {
-            stringBuffer.append(consumeChar());
-        }
-        return stringBuffer.toString();
-    }
-
     /**
      * 解析标签名字，只能包涵数字和字母
      *
@@ -138,7 +126,7 @@ public class HTMLParser {
     private String parseAttrValue() {
         char quote = consumeChar();
         assert (quote == '"' || quote == '\'');
-        String value = consumeWhile( c ->currentChar() != quote,quote);
+        String value = consumeWhile( c ->currentChar() != c,quote);
         assert consumeChar() == quote;
         return value;
     }
@@ -159,57 +147,5 @@ public class HTMLParser {
             attrMap.put(attr[0], attr[1]);
         }
         return attrMap;
-    }
-
-    /**
-     * 清除空格
-     */
-    private void consumeWhiteSpace() {
-
-        if(finish()){
-            return;
-        }
-        while (currentChar() == ' ' || currentChar() == '\n') {
-            consumeChar();
-        }
-    }
-
-    /**
-     * 返回当前位置字符，指针后移
-     *
-     * @return
-     */
-    private char consumeChar() {
-        pos++;
-        return input.charAt(pos - 1);
-    }
-
-    /**
-     * 查看当前位置字符
-     *
-     * @return
-     */
-    private char currentChar() {
-        return input.charAt(pos);
-    }
-
-    /**
-     * 查看当前位置之后n个的字符是否为chars
-     *
-     * @param n
-     * @param chars
-     * @return
-     */
-    private boolean startWith(int n, char[] chars) {
-        return input.substring(pos , pos + n).equals(new String(chars));
-    }
-
-    /**
-     * 查看当前读取位置是否到字符错末尾
-     *
-     * @return
-     */
-    private boolean finish() {
-        return pos >= input.length() - 1;
     }
 }
