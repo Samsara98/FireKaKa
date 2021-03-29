@@ -22,6 +22,7 @@ public class Stylesheet {
             for (Selector selector : rule.selectors) {
 
                 StringBuilder stringBuilder1 = new StringBuilder();
+
                 if(!selector.tagName.equals("")){
                     stringBuilder1.append(selector.tagName);
                 }
@@ -47,6 +48,7 @@ public class Stylesheet {
 
             stringBuilder.append("}\n\n");
         }
+        stringBuilder.delete(stringBuilder.length()-1,stringBuilder.length());
         return stringBuilder.toString();
     }
 

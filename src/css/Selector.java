@@ -1,6 +1,7 @@
 package css;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 class Selector {
 
@@ -10,11 +11,7 @@ class Selector {
 
     public Selector(String id, ArrayList<String> className, String tagName) {
         this.id = id;
-        if (className == null) {
-            this.className = new ArrayList<>();
-        } else {
-            this.className = className;
-        }
+        this.className = Objects.requireNonNullElseGet(className, ArrayList::new);
         this.tagName = tagName;
     }
 
@@ -22,7 +19,7 @@ class Selector {
         if (!id.equals("")) {
             return 4;
         }
-        if (className != null) {
+        if (className.size() != 0) {
             return 3;
         }
         if (tagName.equals("*") || tagName.equals("")) {

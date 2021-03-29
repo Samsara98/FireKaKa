@@ -2,8 +2,10 @@ package css;
 
 import html.Parser;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 
 public class CSSParser extends Parser {
@@ -89,7 +91,7 @@ public class CSSParser extends Parser {
             }
             selectors.add(parseSelector());
         }
-        return selectors;
+        return selectors.stream().sorted(Comparator.comparingInt(Selector::getSpecificity)).collect(Collectors.toCollection(ArrayList<Selector>::new));
     }
 
     private String parseIdentifier() {
