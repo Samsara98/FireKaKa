@@ -3,10 +3,10 @@ package html;
 import java.util.function.Predicate;
 
 public class Parser {
-    protected String input;
-    int pos = 0;
+    public String input;
+    public int pos;
 
-    public Parser(){
+    public Parser() {
 
     }
 
@@ -15,7 +15,7 @@ public class Parser {
      *
      * @return
      */
-    protected char consumeChar() {
+    public char consumeChar() {
         pos++;
         return input.charAt(pos - 1);
     }
@@ -25,7 +25,7 @@ public class Parser {
      *
      * @return
      */
-    protected char currentChar() {
+    public char currentChar() {
         return input.charAt(pos);
     }
 
@@ -36,7 +36,7 @@ public class Parser {
      * @param chars
      * @return
      */
-    protected boolean startWith(int n, char[] chars) {
+    public boolean startWith(int n, char[] chars) {
         return input.substring(pos, pos + n).equals(new String(chars));
     }
 
@@ -45,18 +45,19 @@ public class Parser {
      *
      * @return
      */
-    protected boolean finish() {
+    public boolean finish() {
         return pos >= input.length() - 1;
     }
 
 
     /**
      * 读取字符直至...
+     *
      * @param predicate 读取结束条件
      * @param c
      * @return
      */
-    protected String consumeWhile(Predicate<Character> predicate, char c) {
+    public String consumeWhile(Predicate<Character> predicate, char c) {
 
         StringBuilder stringBuffer = new StringBuilder();
         while (!finish() && predicate.test(c)) {
@@ -68,7 +69,7 @@ public class Parser {
     /**
      * 清除空格
      */
-    protected void consumeWhiteSpace() {
+    public void consumeWhiteSpace() {
 
         if (finish()) {
             return;

@@ -11,6 +11,14 @@ public class Stylesheet {
         this.rules = rules;
     }
 
+    public ArrayList<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(ArrayList<Rule> rules) {
+        this.rules = rules;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -20,7 +28,7 @@ public class Stylesheet {
 
                 StringBuilder stringBuilder1 = new StringBuilder();
 
-                if(!selector.tagName.equals("")){
+                if (!selector.tagName.equals("")) {
                     stringBuilder1.append(selector.tagName);
                 }
 
@@ -35,17 +43,17 @@ public class Stylesheet {
                 }
                 list.add(stringBuilder1.toString());
             }
-            stringBuilder.append(String.join(", ",list));
+            stringBuilder.append(String.join(", ", list));
             stringBuilder.append(" {\n");
 
-            for (Declaration d:rule.declarations) {
+            for (Declaration d : rule.declarations) {
                 stringBuilder.append("  ").append(d.key).append(": ").append(d.value.toString()).append(";\n");
             }
 
 
             stringBuilder.append("}\n\n");
         }
-        stringBuilder.delete(stringBuilder.length()-1,stringBuilder.length());
+        stringBuilder.delete(stringBuilder.length() - 1, stringBuilder.length());
         return stringBuilder.toString();
     }
 

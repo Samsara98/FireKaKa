@@ -2,7 +2,7 @@ package css;
 
 import java.util.ArrayList;
 
-class Rule {
+public class Rule {
 
     ArrayList<Selector> selectors;
     ArrayList<Declaration> declarations;
@@ -11,5 +11,22 @@ class Rule {
         this.selectors = selectors;
         this.declarations = declarations;
     }
+
+    public ArrayList<Selector> getSelectors() {
+        return selectors;
+    }
+
+    public void setSelectors(ArrayList<Selector> selectors) {
+        this.selectors = selectors;
+    }
+
+    public ArrayList<Declaration> getDeclarations() {
+        return declarations;
+    }
+
+    public void setDeclarations(ArrayList<Declaration> declarations) {
+        this.declarations = declarations;
+    }
+
 
 }

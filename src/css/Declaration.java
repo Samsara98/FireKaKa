@@ -1,6 +1,6 @@
 package css;
 
-class Declaration {
+public class Declaration {
 
     public String key;
     public Value value;

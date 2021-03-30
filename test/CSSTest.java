@@ -1,7 +1,5 @@
 import css.CSSParser;
 import css.Stylesheet;
-import dom.Node;
-import html.HTMLParser;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

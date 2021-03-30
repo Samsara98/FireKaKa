@@ -1,7 +1,7 @@
 package css;
 
 
-class Value {
+public class Value {
 
     String string;
     int px = -1;
