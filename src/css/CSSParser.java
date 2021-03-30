@@ -20,6 +20,10 @@ public class CSSParser extends Parser {
         return new Stylesheet(parseRules());
     }
 
+    /**
+     * 解析多个rule
+     * @return
+     */
     private ArrayList<Rule> parseRules() {
 
         ArrayList<Rule> rules = new ArrayList<>();
@@ -29,6 +33,10 @@ public class CSSParser extends Parser {
         return rules;
     }
 
+    /**
+     * 解析单个rule
+     * @return
+     */
     private Rule parseRule() {
         return new Rule(parseSelectors(), parseDeclarations());
     }
@@ -54,6 +62,10 @@ public class CSSParser extends Parser {
         return declarations;
     }
 
+    /**
+     * 解析单个选择器
+     * @return
+     */
     private Selector parseSelector() {
         Selector selector = new Selector("", null, "");
         label:
@@ -83,6 +95,10 @@ public class CSSParser extends Parser {
         return selector;
     }
 
+    /**
+     * 解析多个选择器
+     * @return
+     */
     private ArrayList<Selector> parseSelectors() {
         ArrayList<Selector> selectors = new ArrayList<>();
         while (true) {
@@ -95,6 +111,10 @@ public class CSSParser extends Parser {
         return selectors.stream().sorted(Comparator.comparingInt(Selector::getSpecificity)).collect(Collectors.toCollection(ArrayList<Selector>::new));
     }
 
+    /**
+     * 解析选择器标签
+     * @return
+     */
     private String parseIdentifier() {
         StringBuilder stringBuilder = new StringBuilder();
         while (Pattern.matches("[A-Za-z0-9]", String.valueOf(currentChar()))) {

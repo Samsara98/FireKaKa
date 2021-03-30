@@ -38,10 +38,6 @@ public class Stylesheet {
             stringBuilder.append(String.join(", ",list));
             stringBuilder.append(" {\n");
 
-
-//            for (Map.Entry<String, String> stringStringEntry : rule.declarations.entrySet()) {
-//                stringBuilder.append("  ").append(((Map.Entry) stringStringEntry).getKey()).append(": ").append(((Map.Entry) stringStringEntry).getValue()).append(";\n");
-//            }
             for (Declaration d:rule.declarations) {
                 stringBuilder.append("  ").append(d.key).append(": ").append(d.value.toString()).append(";\n");
             }

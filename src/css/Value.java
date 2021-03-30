@@ -7,6 +7,10 @@ class Value {
     int px = -1;
     int color = -1;
 
+    /**
+     * Value可能有三种
+     * @param value
+     */
     public Value(String value) {
 
         if(value.startsWith("#")){
