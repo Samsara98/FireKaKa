@@ -16,12 +16,19 @@ class Value {
         if(value.startsWith("#")){
             color = Integer.parseInt(value.substring(1),16);
         }else if(value.endsWith("px")){
-            px = Integer.parseInt(value.substring(0,value.length()-2));
+            px = (int) Double.parseDouble(value.substring(0,value.length()-2));
         }else {
             string = value;
         }
 
     }
+
+//    public static void main(String[] args) {
+//        Value v = new Value("2.1px");
+//        System.out.println(v);
+//        v = new Value("#e457");
+//        System.out.println(v);
+//    }
 
     @Override
     public String toString() {
