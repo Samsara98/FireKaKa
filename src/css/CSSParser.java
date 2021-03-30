@@ -1,6 +1,7 @@
 package css;
 
 import html.Parser;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -32,9 +33,9 @@ public class CSSParser extends Parser {
         return new Rule(parseSelectors(), parseDeclarations());
     }
 
-    private LinkedHashMap<String, String> parseDeclarations() {
+    private ArrayList<Declaration> parseDeclarations() {
 
-        LinkedHashMap<String, String> declarations = new LinkedHashMap<>();
+        ArrayList<Declaration> declarations = new ArrayList<>();
         assert currentChar() == '{';
         consumeChar();
         while (true) {
@@ -47,7 +48,7 @@ public class CSSParser extends Parser {
             consumeWhiteSpace();
             String value = consumeWhile(c -> currentChar() != c, ';');
             assert consumeChar() == ';';
-            declarations.put(key, value);
+            declarations.add(new Declaration(key,value));
         }
         assert consumeChar() == '}';
         return declarations;
@@ -95,11 +96,11 @@ public class CSSParser extends Parser {
     }
 
     private String parseIdentifier() {
-        StringBuilder stringBuffer = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         while (Pattern.matches("[A-Za-z0-9]", String.valueOf(currentChar()))) {
-            stringBuffer.append(consumeChar());
+            stringBuilder.append(consumeChar());
         }
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 
 }
