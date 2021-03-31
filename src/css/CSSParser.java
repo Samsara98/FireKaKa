@@ -69,6 +69,7 @@ public class CSSParser extends Parser {
         Selector selector = new Selector("", null, "");
         label:
         while (!finish()) {
+            consumeWhiteSpace();
             if (Pattern.matches("[A-Za-z0-9]", String.valueOf(currentChar()))) {
                 selector.tagName = parseIdentifier();
             }
@@ -88,7 +89,6 @@ public class CSSParser extends Parser {
                 case '{':
                     break label;
                 case ',':
-                case ' ':
                     consumeChar();
                     break label;
             }

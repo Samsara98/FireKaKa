@@ -17,9 +17,12 @@ public class Selector {
 
     public int getSpecificity() {
 
+        System.out.println(id+"-"+tagName);
+
         int specificity = 0;
         if (!id.equals("")) {
             specificity += 6;
+            return specificity;
         }
         if (className.size() != 0) {
             specificity += 3;
