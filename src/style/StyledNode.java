@@ -63,7 +63,6 @@ public class StyledNode {
     private MatchedRule matchRule(ElementNode elementNode, Rule rule) {
         for (Selector selector : rule.getSelectors()) {
             if (mathches(elementNode, selector)) {
-                System.out.println(selector.getSpecificity());
                 return new MatchedRule(selector.getSpecificity(), rule);
             }
         }
