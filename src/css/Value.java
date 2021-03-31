@@ -16,8 +16,7 @@ public class Value {
 
         if (value.startsWith("#")) {
             int i = Integer.parseInt(value.substring(1), 16);
-            assert (i >= 0) && (i <= 16777215);
-            if (value.substring(1).length() <= 6 && value.substring(1).length() >= 3) {
+            if (value.substring(1).length() <= 6 && value.substring(1).length() >= 3 && i >= 0) {
                 color = value.substring(1);
             } else {
                 color = "";
