@@ -126,6 +126,7 @@ public class CSSParser extends Parser {
      */
     private String parseIdentifier() {
         StringBuilder stringBuilder = new StringBuilder();
+        consumeWhiteSpace();
         while (Pattern.matches("[A-Za-z0-9]", String.valueOf(currentChar()))) {
             stringBuilder.append(consumeChar());
         }
