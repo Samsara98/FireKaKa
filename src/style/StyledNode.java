@@ -79,6 +79,7 @@ public class StyledNode {
 
         Map<String, Value> values = new LinkedHashMap<>();
         ArrayList<MatchedRule> rules = matchRules(elementNode, stylesheet);
+        //按优先度从低到高匹配
         rules = rules.stream().sorted(Comparator.comparingInt(a -> a.specificity)).collect(Collectors.toCollection(ArrayList::new));
         for (MatchedRule matchRule : rules) {
             for (Declaration declaration : matchRule.rule.getDeclarations()) {
