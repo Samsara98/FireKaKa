@@ -79,11 +79,14 @@ public class StyledNode {
 
         Map<String, Value> values = new LinkedHashMap<>();
         ArrayList<MatchedRule> rules = matchRules(elementNode, stylesheet);
-        //按优先度从低到高匹配
+        //按优先度从高到低匹配
         rules = rules.stream().sorted(Comparator.comparingInt(a -> a.specificity)).collect(Collectors.toCollection(ArrayList::new));
+        Collections.reverse(rules);
         for (MatchedRule matchRule : rules) {
             for (Declaration declaration : matchRule.rule.getDeclarations()) {
-                values.put(declaration.key, declaration.value);
+                if(!values.containsKey(declaration.key)){
+                    values.put(declaration.key, declaration.value);
+                }
             }
         }
         return values;
@@ -125,8 +128,9 @@ public class StyledNode {
     private StringBuilder sout(StyledNode styledNode, StringBuilder stringBuilder, int num) {
         String indent = "  ";
         stringBuilder.append(indent.repeat(num)).append("<").append(styledNode.domNode.tagName);
-        if (styledNode.propertyMap != null) {
-            for (Map.Entry<String, Value> entry : styledNode.propertyMap.entrySet()) {
+        Map<String,Value> map = styledNode.propertyMap;
+        if (map!= null) {
+            for (Map.Entry<String, Value> entry : map.entrySet()) {
                 stringBuilder.append(" ").append(entry.getKey()).append("=").append("\"").append(entry.getValue().toString()).append("\"");
             }
         }
