@@ -19,7 +19,7 @@ public class Selector {
 
         int specificity = 0;
         if (!id.equals("")) {
-            specificity += 4;
+            specificity += 6;
         }
         if (className.size() != 0) {
             specificity += 3;

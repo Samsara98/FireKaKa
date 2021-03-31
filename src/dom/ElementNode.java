@@ -18,11 +18,12 @@ public class ElementNode extends Node {
     }
 
     public String getID() {
-        String s=  attrs.get("id");
+        String s = attrs.get("id");
         return Objects.requireNonNullElse(s, "");
     }
 
     public Set<String> getClassName() {
-        return Arrays.stream(attrs.get("class").split(" ")).collect(Collectors.toSet());
+        String className = Objects.requireNonNullElse(attrs.get("class"), "");
+        return Arrays.stream(className.split(" ")).collect(Collectors.toSet());
     }
 }
