@@ -21,6 +21,7 @@ public class CSSParser extends Parser {
 
     /**
      * 解析多个rule
+     *
      * @return
      */
     private ArrayList<Rule> parseRules() {
@@ -34,6 +35,7 @@ public class CSSParser extends Parser {
 
     /**
      * 解析单个rule
+     *
      * @return
      */
     private Rule parseRule() {
@@ -55,7 +57,7 @@ public class CSSParser extends Parser {
             consumeWhiteSpace();
             String value = consumeWhile(c -> currentChar() != c, ';');
             assert consumeChar() == ';';
-            declarations.add(new Declaration(key,value));
+            declarations.add(new Declaration(key, value));
         }
         assert consumeChar() == '}';
         return declarations;
@@ -63,6 +65,7 @@ public class CSSParser extends Parser {
 
     /**
      * 解析单个选择器
+     *
      * @return
      */
     private Selector parseSelector() {
@@ -98,6 +101,7 @@ public class CSSParser extends Parser {
 
     /**
      * 解析多个选择器
+     *
      * @return
      */
     private ArrayList<Selector> parseSelectors() {
@@ -109,11 +113,15 @@ public class CSSParser extends Parser {
             }
             selectors.add(parseSelector());
         }
+        if (selectors.size() == 0) {
+            selectors.add(new Selector("", null, ""));
+        }
         return selectors.stream().sorted(Comparator.comparingInt(Selector::getSpecificity)).collect(Collectors.toCollection(ArrayList<Selector>::new));
     }
 
     /**
      * 解析选择器标签
+     *
      * @return
      */
     private String parseIdentifier() {

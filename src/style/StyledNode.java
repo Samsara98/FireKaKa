@@ -95,7 +95,8 @@ public class StyledNode {
 
     private boolean mathches(ElementNode elementNode, Selector selector) {
 
-        if (elementNode.tagName != null && !elementNode.tagName.equals(selector.tagName) && !selector.tagName.equals("*") && !selector.tagName.equals("")) {
+
+        if (!elementNode.tagName.equals(selector.tagName) && !selector.tagName.equals("*") && !selector.tagName.equals("")) {
             return false;
         }
         if (!elementNode.getID().equals(selector.id) && !selector.id.equals("")) {
