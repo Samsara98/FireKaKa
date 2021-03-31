@@ -25,7 +25,6 @@ public class StyleTest {
 
         StyledNode root = new StyledNode(domNode, stylesheet);
         String output = root.toString();
-        System.out.println(output);
         assert output.equals(expectedOutput);
     }
 }
