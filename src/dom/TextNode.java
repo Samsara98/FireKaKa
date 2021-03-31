@@ -6,7 +6,7 @@ public class TextNode extends Node{
     public TextNode(String text){
         super();
         nodeType = "text";
-        this.tagName = "text_";
+        this.tagName = "";
         this.text = text;
     }
     public TextNode(){
