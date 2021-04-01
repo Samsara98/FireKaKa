@@ -19,11 +19,10 @@ public class Selector {
 
         int specificity = 0;
         if (!id.equals("")) {
-            specificity += 6;
+            specificity += 99999;
         }
-        if (className.size() != 0) {
-            specificity += 3;
-        }
+        specificity += 3 * className.size();
+
         if (tagName.equals("*") || tagName.equals("")) {
             specificity += 1;
         } else {

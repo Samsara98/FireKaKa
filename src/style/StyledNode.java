@@ -33,6 +33,19 @@ public class StyledNode {
         this.children = children;
     }
 
+    public String display() {
+        String display = getAttValue("display").toString();
+        if (display.equals("")) {
+            return "inline";
+        }
+        return display;
+    }
+
+    public Value getAttValue(String att) {
+
+        return Objects.requireNonNullElse(propertyMap.get(att), new Value("none"));
+    }
+
     /**
      * 元素节点与一条规则是否匹配
      *
@@ -84,7 +97,7 @@ public class StyledNode {
         Collections.reverse(rules);
         for (MatchedRule matchRule : rules) {
             for (Declaration declaration : matchRule.rule.getDeclarations()) {
-                if(!values.containsKey(declaration.key)){
+                if (!values.containsKey(declaration.key)) {
                     values.put(declaration.key, declaration.value);
                 }
             }
@@ -128,8 +141,8 @@ public class StyledNode {
     private StringBuilder sout(StyledNode styledNode, StringBuilder stringBuilder, int num) {
         String indent = "  ";
         stringBuilder.append(indent.repeat(num)).append("<").append(styledNode.domNode.tagName);
-        Map<String,Value> map = styledNode.propertyMap;
-        if (map!= null) {
+        Map<String, Value> map = styledNode.propertyMap;
+        if (map != null) {
             for (Map.Entry<String, Value> entry : map.entrySet()) {
                 stringBuilder.append(" ").append(entry.getKey()).append("=").append("\"").append(entry.getValue().toString()).append("\"");
             }
