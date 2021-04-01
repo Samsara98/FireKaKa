@@ -3,6 +3,8 @@ package style;
 import css.*;
 import dom.ElementNode;
 import dom.Node;
+import layout.BoxType;
+import layout.Type;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -33,12 +35,15 @@ public class StyledNode {
         this.children = children;
     }
 
-    public String display() {
+    public Type display() {
         String display = getAttValue("display").toString();
-        if (display.equals("")) {
-            return "inline";
+        if (display.equals("none")||display.equals("inline")) {
+            return Type.InlineNode;
+        }else if(display.equals("block")){
+            return Type.BlockNode;
+        }else {
+            return Type.AnonymousBlock;
         }
-        return display;
     }
 
     public Value getAttValue(String att) {

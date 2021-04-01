@@ -3,9 +3,9 @@ package css;
 
 public class Value {
 
-    String string;
-    int px;
-    String color;
+    public String string;
+    public int px;
+    public String color;
 
     /**
      * Value可能有三种
@@ -29,6 +29,17 @@ public class Value {
 
     }
 
+    /**
+     * 用来将长度转换成像素。如果某一属性设置为auto，则返回0
+     *
+     * @return
+     */
+    public int toPx() {
+        if (string == null || !string.equals("auto")) {
+            return px;
+        }
+        return 0;
+    }
 //    public static void main(String[] args) {
 //        Value v = new Value("2.1px");
 //        System.out.println(v);

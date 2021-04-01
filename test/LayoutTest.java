@@ -31,8 +31,8 @@ public class LayoutTest {
          * （content area）对齐窗口左上角。
          ****************************************************************************************/
         layoutBoxRoot.layoutTree(1000);
-
         String output = layoutBoxRoot.toString();
+        System.out.println(output);
         assert output.equals(expectedOutput);
     }
 }
