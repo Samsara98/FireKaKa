@@ -1,5 +1,5 @@
 package layout;
 
 public enum Type {
-    BlockNode, InlineNode, AnonymousBlock
+    BlockNode, InlineNode, AnonymousBlock,none
 }

@@ -35,20 +35,28 @@ public class StyledNode {
         this.children = children;
     }
 
+    /**
+     *
+     * @return display类别，
+     */
     public Type display() {
         String display = getAttValue("display").toString();
-        if (display.equals("none")||display.equals("inline")) {
-            return Type.InlineNode;
-        }else if(display.equals("block")){
-            return Type.BlockNode;
-        }else {
-            return Type.AnonymousBlock;
+        switch (display) {
+            case "":
+            case "inline":
+                return Type.InlineNode;
+            case "block":
+                return Type.BlockNode;
+            case "none":
+                return Type.none;
+            default:
+                return null;
         }
     }
 
     public Value getAttValue(String att) {
 
-        return Objects.requireNonNullElse(propertyMap.get(att), new Value("none"));
+        return Objects.requireNonNullElse(propertyMap.get(att), new Value(""));
     }
 
     /**

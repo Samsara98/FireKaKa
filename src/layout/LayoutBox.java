@@ -15,6 +15,7 @@ public class LayoutBox {
     public LayoutBox() {
     }
 
+    //构造布局树
     public LayoutBox(StyledNode styledNode) {
 
         this.boxType = new BoxType(styledNode, styledNode.display());
@@ -38,6 +39,10 @@ public class LayoutBox {
         layout(null);
     }
 
+    /**
+     *
+     * @return 根据Boxtype来获取匿名盒子
+     */
     private LayoutBox getInlineContainer() {
 
         switch (boxType.type) {
@@ -60,6 +65,8 @@ public class LayoutBox {
      * 对一个盒子和它的后代节点进行布局,块（block）的宽度取决于它的父节点，
      * 高度则取决于子节点。这意味着计算宽度时，我们需要自上而下地遍历树，这样才可以先算出父节点的宽度，
      * 然后再对子节点进行布局。计算高度时则要自下而上遍历树，这样计算完子节点的高度之后才会计算父节点的高度。
+     *
+     * @param containingBlock 为需要布局的盒子的容器（父盒子）
      */
     public void layout(LayoutBox containingBlock) {
 
@@ -108,6 +115,7 @@ public class LayoutBox {
         Value[] values = new Value[]{marginLeft, marginRight, borderLeft, borderRight, paddingLeft, paddingRight, width};
         int total = Arrays.stream(values).mapToInt(Value::toPx).sum();
         int pWidth;
+        //根节点没有父类，可指定视图大小
         if (containingBlock == null) {
             pWidth = rootWidth;
         } else {
@@ -249,8 +257,8 @@ public class LayoutBox {
     private StringBuilder sout(LayoutBox layoutBox, StringBuilder stringBuilder, int num) {
         String indent = "  ";
         stringBuilder.append(indent.repeat(num)).append("<").append(layoutBox.boxType.styledNode.domNode.tagName);
-        String borderX= " borderX=\"" + layoutBox.dimensions.borderBox().x+ "\"";
-        String contentY= " contentY=\"" + layoutBox.dimensions.content.y+ "\"";
+        String borderX = " borderX=\"" + layoutBox.dimensions.borderBox().x + "\"";
+        String contentY = " contentY=\"" + layoutBox.dimensions.content.y + "\"";
         stringBuilder.append(borderX).append(contentY).append(">\n");
         for (LayoutBox child : layoutBox.children) {
             stringBuilder = sout(child, stringBuilder, num + 1);
