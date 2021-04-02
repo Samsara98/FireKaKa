@@ -3,24 +3,21 @@ package layout;
 import css.Value;
 import style.StyledNode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class LayoutBox {
 
     Dimensions dimensions;
     BoxType boxType;
     List<LayoutBox> children;
-    int rootWidth=-1;
+    int rootWidth = -1;
 
     public LayoutBox() {
     }
 
-    public LayoutBox(StyledNode styledNode){
+    public LayoutBox(StyledNode styledNode) {
 
-        this.boxType = new BoxType(styledNode,styledNode.display());
+        this.boxType = new BoxType(styledNode, styledNode.display());
         children = new ArrayList<>();
         dimensions = new Dimensions();
 
@@ -245,11 +242,20 @@ public class LayoutBox {
 
     @Override
     public String toString() {
-        return "LayoutBox{" +
-                "dimensions=" + dimensions +
-                ", boxType=" + boxType +
-                ", children=" + children +
-                ", rootWidth=" + rootWidth +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder();
+        return sout(this, stringBuilder, 0).toString();
+    }
+
+    private StringBuilder sout(LayoutBox layoutBox, StringBuilder stringBuilder, int num) {
+        String indent = "  ";
+        stringBuilder.append(indent.repeat(num)).append("<").append(layoutBox.boxType.styledNode.domNode.tagName);
+        String borderX= " borderX=\"" + layoutBox.dimensions.borderBox().x+ "\"";
+        String contentY= " contentY=\"" + layoutBox.dimensions.content.y+ "\"";
+        stringBuilder.append(borderX).append(contentY).append(">\n");
+        for (LayoutBox child : layoutBox.children) {
+            stringBuilder = sout(child, stringBuilder, num + 1);
+        }
+        stringBuilder.append(indent.repeat(num)).append("</").append(layoutBox.boxType.styledNode.domNode.tagName).append(">\n");
+        return stringBuilder;
     }
 }

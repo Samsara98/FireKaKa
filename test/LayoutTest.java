@@ -32,7 +32,6 @@ public class LayoutTest {
          ****************************************************************************************/
         layoutBoxRoot.layoutTree(1000);
         String output = layoutBoxRoot.toString();
-        System.out.println(output);
         assert output.equals(expectedOutput);
     }
 }
