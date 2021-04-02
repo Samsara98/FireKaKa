@@ -6,7 +6,9 @@ public class Rect {
     int width;
     int height;
 
-    public Rect(){}
+    public Rect() {
+    }
+
     public Rect(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;

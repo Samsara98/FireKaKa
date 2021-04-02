@@ -56,7 +56,7 @@ public class StyledNode {
 
     public Value getAttValue(String att) {
 
-        return Objects.requireNonNullElse(propertyMap.get(att), new Value(""));
+        return Objects.requireNonNullElse(propertyMap.get(att), new Value("none"));
     }
 
     /**

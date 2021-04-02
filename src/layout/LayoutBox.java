@@ -41,7 +41,7 @@ public class LayoutBox {
 
     /**
      *
-     * @return 根据Boxtype来获取匿名盒子
+     * @return 根据Boxtype来获取容器
      */
     private LayoutBox getInlineContainer() {
 
