@@ -1,6 +1,5 @@
 package painting;
 
-import layout.LayoutBox;
 import layout.Rect;
 
 import java.awt.*;

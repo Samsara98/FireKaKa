@@ -4,12 +4,14 @@ import layout.Dimensions;
 import layout.LayoutBox;
 import layout.Rect;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Paint {
 
-    public Paint(){}
+    public Paint() {
+    }
 
     public BufferedImage paint(LayoutBox layoutBoxRoot, int canvasWidth, int canvasHeight) {
 
@@ -18,11 +20,11 @@ public class Paint {
         for (SolidColor solidColor : displayList) {
             canvas.paintItem(solidColor);
         }
-        BufferedImage image  = new BufferedImage(canvasWidth,canvasHeight,BufferedImage.TYPE_INT_ARGB);
+        BufferedImage image = new BufferedImage(canvasWidth, canvasHeight, BufferedImage.TYPE_INT_ARGB);
 
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {
-                image.setRGB(x,y,canvas.pixels.get(x+y*canvasWidth).getRGB());
+                image.setRGB(x, y, canvas.pixels.get(x + y * canvasWidth).getRGB());
             }
         }
         return image;
@@ -44,8 +46,18 @@ public class Paint {
     }
 
     private void renderBackground(ArrayList<SolidColor> dispalyList, LayoutBox layoutBox) {
-        String color = getColor(layoutBox, "background");
-        dispalyList.add(new SolidColor(color, layoutBox.dimensions.borderBox()));
+        String col = getColor(layoutBox, "background");
+        String op = layoutBox.boxType.styledNode.getAttValue("opacity").toString();
+        int opacity = 255;
+        if (!op.equals("none")) {
+            opacity = Integer.parseInt(op);
+        }
+        Color color = new Color(Integer.parseInt(col.substring(1), 16));
+        int r = color.getRed();
+        int g = color.getGreen();
+        int b = color.getBlue();
+        Color c = new Color(r, g, b, opacity);
+        dispalyList.add(new SolidColor(c, layoutBox.dimensions.borderBox()));
     }
 
     private String getColor(LayoutBox layoutBox, String name) {
@@ -64,14 +76,16 @@ public class Paint {
     }
 
     private void renderBorders(ArrayList<SolidColor> dispalyList, LayoutBox layoutBox) {
-        String color = getColor(layoutBox, "border-color");
+        String col = getColor(layoutBox, "border-color");
         // 边框没颜色的话直接返回即可
-        if (color.equals("none")) {
+        if (col.equals("none")) {
             return;
         }
 
         Dimensions d = layoutBox.dimensions;
         Rect borderBox = d.borderBox();
+        Color color = new Color(Integer.parseInt(col.substring(1), 16));
+
         // 左边框
         dispalyList.add(new SolidColor(color, new Rect(
                 borderBox.x,

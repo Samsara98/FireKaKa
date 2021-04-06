@@ -63,8 +63,6 @@ public class PaintingTest {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (imgA.getRGB(x, y) != imgB.getRGB(x, y)) {
-                    System.out.println(Integer.toHexString(imgA.getRGB(x, y)));
-                    System.out.println(Integer.toHexString(imgB.getRGB(x, y)));
                     return false;
                 }
             }
