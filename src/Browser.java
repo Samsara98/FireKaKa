@@ -45,6 +45,15 @@ public class Browser extends GraphicsProgram {
         setWidth(APPLICATION_WIDTH);
         setCanvasWidth(CANVAS_WIDTH);
         setCanvasHeight(CANVAS_HEIGHT);
+        // 读取HTML和CSS文件
+        try {
+            html = Files.readString(Path.of("res/" + URL + "/index.html"), StandardCharsets.UTF_8);
+            css = Files.readString(Path.of("res/" + URL + "/style.css"), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // 渲染
+        render();
     }
 
     public void actionPerformed(ActionEvent e) {
