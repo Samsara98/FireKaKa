@@ -40,6 +40,7 @@ public class CSSParser extends Parser {
         ArrayList<Rule> rules = new ArrayList<>();
         while (!finish()) {
             rules.add(parseRule());
+            consumeWhiteSpace();
         }
         return rules;
     }
