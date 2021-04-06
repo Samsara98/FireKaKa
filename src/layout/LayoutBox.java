@@ -7,9 +7,9 @@ import java.util.*;
 
 public class LayoutBox {
 
-    Dimensions dimensions;
-    BoxType boxType;
-    List<LayoutBox> children;
+    public Dimensions dimensions;
+    public BoxType boxType;
+    public List<LayoutBox> children;
     int rootWidth = -1;
 
     public LayoutBox() {

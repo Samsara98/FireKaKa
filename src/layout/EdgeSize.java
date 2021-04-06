@@ -1,10 +1,10 @@
 package layout;
 
 public class EdgeSize {
-    int left;
-    int right;
-    int top;
-    int bottom;
+    public int left;
+    public int right;
+    public int top;
+    public int bottom;
 
     @Override
     public String toString() {

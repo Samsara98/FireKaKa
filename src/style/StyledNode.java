@@ -3,7 +3,6 @@ package style;
 import css.*;
 import dom.ElementNode;
 import dom.Node;
-import layout.BoxType;
 import layout.Type;
 
 import java.util.*;
