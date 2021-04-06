@@ -13,6 +13,13 @@ public class Paint {
     public Paint() {
     }
 
+    /**
+     * 先构建显示列表，然后将其栅格化，返回一个画布
+     * @param layoutBoxRoot
+     * @param canvasWidth
+     * @param canvasHeight
+     * @return
+     */
     public BufferedImage paint(LayoutBox layoutBoxRoot, int canvasWidth, int canvasHeight) {
 
         ArrayList<SolidColor> displayList = buildDispalyList(layoutBoxRoot);
@@ -30,12 +37,22 @@ public class Paint {
         return image;
     }
 
+    /**
+     * 构建显示列表
+     * @param layoutBox
+     * @return
+     */
     public ArrayList<SolidColor> buildDispalyList(LayoutBox layoutBox) {
         ArrayList<SolidColor> dispalyList = new ArrayList<>();
         renderLayoutBox(dispalyList, layoutBox);
         return dispalyList;
     }
 
+    /**
+     * 从LayoutBOX及其子类中提取样式内容，构建显示列表
+     * @param dispalyList
+     * @param layoutBox
+     */
     private void renderLayoutBox(ArrayList<SolidColor> dispalyList, LayoutBox layoutBox) {
         renderBackground(dispalyList, layoutBox);
         renderBorders(dispalyList, layoutBox);
@@ -45,6 +62,11 @@ public class Paint {
         }
     }
 
+    /**
+     * 提取背景颜色，加入到构建列表
+     * @param dispalyList
+     * @param layoutBox
+     */
     private void renderBackground(ArrayList<SolidColor> dispalyList, LayoutBox layoutBox) {
         String col = getColor(layoutBox, "background");
         String op = layoutBox.boxType.styledNode.getAttValue("opacity").toString();
@@ -60,6 +82,12 @@ public class Paint {
         dispalyList.add(new SolidColor(c, layoutBox.dimensions.borderBox()));
     }
 
+    /**
+     * 获取颜色
+     * @param layoutBox
+     * @param name
+     * @return
+     */
     private String getColor(LayoutBox layoutBox, String name) {
         switch (layoutBox.boxType.type) {
             case BlockNode:
@@ -75,6 +103,11 @@ public class Paint {
         return "none";
     }
 
+    /**
+     * 提取border颜色和大小、位置，加入到显示列表
+     * @param dispalyList
+     * @param layoutBox
+     */
     private void renderBorders(ArrayList<SolidColor> dispalyList, LayoutBox layoutBox) {
         String col = getColor(layoutBox, "border-color");
         // 边框没颜色的话直接返回即可

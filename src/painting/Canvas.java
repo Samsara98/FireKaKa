@@ -20,7 +20,10 @@ public class Canvas {
         }
     }
 
-
+    /**
+     * 根据显示命令修改画布
+     * @param dispalyCommand
+     */
     public void paintItem(DispalyCommand dispalyCommand) {
         Rect rect = dispalyCommand.rect;
         if (dispalyCommand.commandName.equals("SolidColor")) {
