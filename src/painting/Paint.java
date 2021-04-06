@@ -79,7 +79,7 @@ public class Paint {
             opacity = Integer.parseInt(op);
         }
         if (col.equals("none")) {
-            col = "#fffffff";
+            col = "#000000";
         }
         Color color = new Color(Integer.parseInt(col.substring(1), 16));
         int r = color.getRed();
