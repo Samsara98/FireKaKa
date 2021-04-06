@@ -41,9 +41,9 @@ public class StyledNode {
     public Type display() {
         String display = getAttValue("display").toString();
         switch (display) {
+            case "":
             case "inline":
                 return Type.InlineNode;
-            case "":
             case "block":
                 return Type.BlockNode;
             case "none":

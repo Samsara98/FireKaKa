@@ -29,15 +29,17 @@ public class PaintingTest {
         CSSParser cssParser = new CSSParser();
         Stylesheet stylesheet = cssParser.parse(cssInput);
 
+
         StyledNode styledRoot = new StyledNode(domNode, stylesheet);
         LayoutBox layoutBoxRoot = new LayoutBox(styledRoot);
+
 
         // 根据窗口宽度计算
         layoutBoxRoot.layoutTree(CANVAS_WIDTH);
         Paint paint = new Paint();
         BufferedImage image = paint.paint(layoutBoxRoot, CANVAS_WIDTH, CANVAS_HEIGHT);
-//        File outputfile = new File("res/test.png");
-//        ImageIO.write(image, "png", outputfile);
+        File outputfile = new File("res/test.png");
+        ImageIO.write(image, "png", outputfile);
         BufferedImage expectedImage = ImageIO.read(new File("res/paint-test.png"));
         assert identicalImage(image, expectedImage);
     }

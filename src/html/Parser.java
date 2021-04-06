@@ -76,6 +76,9 @@ public class Parser {
         }
         while (currentChar() == ' ' || currentChar() == '\n') {
             consumeChar();
+            if (finish()) {
+                return;
+            }
         }
     }
 }
