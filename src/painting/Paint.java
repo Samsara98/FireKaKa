@@ -15,6 +15,7 @@ public class Paint {
 
     /**
      * 先构建显示列表，然后将其栅格化，返回一个画布
+     *
      * @param layoutBoxRoot
      * @param canvasWidth
      * @param canvasHeight
@@ -39,6 +40,7 @@ public class Paint {
 
     /**
      * 构建显示列表
+     *
      * @param layoutBox
      * @return
      */
@@ -50,6 +52,7 @@ public class Paint {
 
     /**
      * 从LayoutBOX及其子类中提取样式内容，构建显示列表
+     *
      * @param dispalyList
      * @param layoutBox
      */
@@ -64,6 +67,7 @@ public class Paint {
 
     /**
      * 提取背景颜色，加入到构建列表
+     *
      * @param dispalyList
      * @param layoutBox
      */
@@ -84,6 +88,7 @@ public class Paint {
 
     /**
      * 获取颜色
+     *
      * @param layoutBox
      * @param name
      * @return
@@ -91,13 +96,14 @@ public class Paint {
     private String getColor(LayoutBox layoutBox, String name) {
         switch (layoutBox.boxType.type) {
             case BlockNode:
-            case InlineNode:
+
                 if (!layoutBox.boxType.styledNode.getAttValue(name).toString().equals("none")) {
                     return layoutBox.boxType.styledNode.getAttValue(name).toString();
                 } else {
                     return "none";
                 }
             case AnonymousBlock:
+            case InlineNode:
                 return "none";
         }
         return "none";
@@ -105,6 +111,7 @@ public class Paint {
 
     /**
      * 提取border颜色和大小、位置，加入到显示列表
+     *
      * @param dispalyList
      * @param layoutBox
      */
