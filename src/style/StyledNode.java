@@ -42,12 +42,12 @@ public class StyledNode {
         switch (display) {
             case "":
             case "inline":
-            case "none":
                 return Type.InlineNode;
+            case "none":
             case "block":
                 return Type.BlockNode;
             default:
-                return null;
+                return Type.AnonymousBlock;
         }
     }
 

@@ -32,6 +32,7 @@ public class PaintingTest {
 
         StyledNode styledRoot = new StyledNode(domNode, stylesheet);
         LayoutBox layoutBoxRoot = new LayoutBox(styledRoot);
+        System.out.println(layoutBoxRoot);
 
 
         // 根据窗口宽度计算

@@ -24,6 +24,7 @@ public class LayoutBox {
 
         for (StyledNode child : styledNode.children) {
             switch (child.display()) {
+                case AnonymousBlock:
                 case BlockNode:
                     children.add(new LayoutBox(child));
                     break;
