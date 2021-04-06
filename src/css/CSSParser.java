@@ -10,8 +10,14 @@ import java.util.stream.Collectors;
 
 public class CSSParser extends Parser {
 
-    public CSSParser() {
+    String css;
 
+    public CSSParser(String css) {
+        this.css = css;
+    }
+
+    public Stylesheet parse(){
+        return parse(css);
     }
 
     public Stylesheet parse(String input) {

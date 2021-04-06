@@ -9,14 +9,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class HTMLParser extends Parser{
+public class HTMLParser extends Parser {
 
+    String html;
 
-    public HTMLParser() {
+    public HTMLParser(String html) {
+        this.html = html;
+    }
+
+    public Node parse() {
+
+        return parse(html);
     }
 
     /**
      * 解析html为node对象，若无html标签自动添加
+     *
      * @param input html-String
      * @return ElementNode对象
      */
@@ -24,10 +32,10 @@ public class HTMLParser extends Parser{
         this.input = input;
         ArrayList<Node> nodes = parseNodes();
         //只有一个node则为html标签node
-        if(nodes.size()==1){
+        if (nodes.size() == 1) {
             return nodes.get(0);
-        }else {
-            return new ElementNode("html",new HashMap<String,String>(),nodes);
+        } else {
+            return new ElementNode("html", new HashMap<String, String>(), nodes);
         }
     }
 
@@ -77,7 +85,7 @@ public class HTMLParser extends Parser{
         String tagName2 = parseTagName();
         assert tagName2.equals(tagName);
         assert consumeChar() == '>';
-        return new ElementNode(tagName,attrs,children);
+        return new ElementNode(tagName, attrs, children);
     }
 
     /**
@@ -86,7 +94,7 @@ public class HTMLParser extends Parser{
      * @return
      */
     private TextNode parseTest() {
-        String text = consumeWhile(c -> currentChar()!=c,'<');
+        String text = consumeWhile(c -> currentChar() != c, '<');
         return new TextNode(text);
     }
 
@@ -126,7 +134,7 @@ public class HTMLParser extends Parser{
     private String parseAttrValue() {
         char quote = consumeChar();
         assert (quote == '"' || quote == '\'');
-        String value = consumeWhile( c ->currentChar() != c,quote);
+        String value = consumeWhile(c -> currentChar() != c, quote);
         assert consumeChar() == quote;
         return value;
     }

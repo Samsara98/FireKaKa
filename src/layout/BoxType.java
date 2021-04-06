@@ -10,7 +10,7 @@ public class BoxType {
 
     public BoxType(StyledNode styledNode, Type type) {
         this.styledNode = styledNode;
-        assert type!=Type.none;
+        assert type!=null;
         this.type = type;
     }
 

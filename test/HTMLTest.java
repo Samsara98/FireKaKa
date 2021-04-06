@@ -11,7 +11,7 @@ public class HTMLTest {
         String input = Files.readString(Path.of("res/html-input.html"), StandardCharsets.UTF_8);
         String expectedOutput = Files.readString(Path.of("res/html-output.html"), StandardCharsets.UTF_8);
 
-        HTMLParser parser = new HTMLParser();
+        HTMLParser parser = new HTMLParser("res/html-input.html");
         Node node = parser.parse(input);
         String output = node.toString();
         assert output.equals(expectedOutput);

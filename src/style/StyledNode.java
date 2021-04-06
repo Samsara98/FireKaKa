@@ -43,11 +43,10 @@ public class StyledNode {
         switch (display) {
             case "":
             case "inline":
+            case "none":
                 return Type.InlineNode;
             case "block":
                 return Type.BlockNode;
-            case "none":
-                return Type.none;
             default:
                 return null;
         }

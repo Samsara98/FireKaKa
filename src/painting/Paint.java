@@ -78,6 +78,9 @@ public class Paint {
         if (!op.equals("none")) {
             opacity = Integer.parseInt(op);
         }
+        if(col.equals("none")){
+            col = "#fffffff";
+        }
         Color color = new Color(Integer.parseInt(col.substring(1), 16));
         int r = color.getRed();
         int g = color.getGreen();
