@@ -18,7 +18,7 @@ public class Paint {
         for (SolidColor solidColor : displayList) {
             canvas.paintItem(solidColor);
         }
-        BufferedImage image  = new BufferedImage(canvasWidth,canvasHeight,BufferedImage.TYPE_INT_RGB);
+        BufferedImage image  = new BufferedImage(canvasWidth,canvasHeight,BufferedImage.TYPE_INT_ARGB);
 
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {

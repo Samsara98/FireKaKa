@@ -8,6 +8,7 @@ import style.StyledNode;
 
 import javax.imageio.ImageIO;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -62,6 +63,8 @@ public class PaintingTest {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (imgA.getRGB(x, y) != imgB.getRGB(x, y)) {
+                    System.out.println(Integer.toHexString(imgA.getRGB(x, y)));
+                    System.out.println(Integer.toHexString(imgB.getRGB(x, y)));
                     return false;
                 }
             }
