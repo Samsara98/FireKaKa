@@ -23,9 +23,6 @@ public class Paint {
      */
     public BufferedImage paint(LayoutBox layoutBoxRoot, int canvasWidth, int canvasHeight) {
 
-        if(layoutBoxRoot.boxType==null){
-            return null;
-        }
         ArrayList<SolidColor> displayList = buildDispalyList(layoutBoxRoot);
         Canvas canvas = new Canvas(canvasWidth, canvasHeight);
         for (SolidColor solidColor : displayList) {

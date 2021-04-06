@@ -18,9 +18,6 @@ public class LayoutBox {
     //构造布局树
     public LayoutBox(StyledNode styledNode) {
 
-        if (styledNode.domNode==null){
-            return;
-        }
         this.boxType = new BoxType(styledNode, styledNode.display());
         children = new ArrayList<>();
         dimensions = new Dimensions();
