@@ -13,12 +13,17 @@ public class HTMLParser extends Parser {
 
     String html;
 
+    public HTMLParser() {
+    }
+
     public HTMLParser(String html) {
         this.html = html;
     }
 
     public Node parse() {
-
+        if(html==null){
+            return null;
+        }
         return parse(html);
     }
 

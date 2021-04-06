@@ -85,8 +85,10 @@ public class Browser extends GraphicsProgram {
         Paint paint = new Paint();
         Image image = paint.paint(layoutBox, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-        GImage gImage = new GImage(image);
-        add(gImage);
+        if(image!=null){
+            GImage gImage = new GImage(image);
+            add(gImage);
+        }
     }
 }
 

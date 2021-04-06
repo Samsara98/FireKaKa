@@ -2,6 +2,7 @@ package css;
 
 import html.Parser;
 
+import javax.swing.text.html.CSS;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.regex.Pattern;
@@ -12,6 +13,7 @@ public class CSSParser extends Parser {
 
     String css;
 
+    public CSSParser(){}
     public CSSParser(String css) {
         this.css = css;
     }
@@ -21,6 +23,9 @@ public class CSSParser extends Parser {
     }
 
     public Stylesheet parse(String input) {
+        if(input==null){
+            return null;
+        }
         this.input = input;
         return new Stylesheet(parseRules());
     }

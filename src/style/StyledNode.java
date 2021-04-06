@@ -17,6 +17,10 @@ public class StyledNode {
 
     public StyledNode(Node domNode, Stylesheet stylesheet) {
 
+        if (domNode == null || stylesheet == null) {
+            return;
+        }
+
         Map<String, Value> propertyMap;
         if (domNode.nodeType.equals("element")) {
             propertyMap = specifiedValues((ElementNode) domNode, stylesheet);
@@ -35,7 +39,6 @@ public class StyledNode {
     }
 
     /**
-     *
      * @return display类别，
      */
     public Type display() {
@@ -53,8 +56,11 @@ public class StyledNode {
     }
 
     public Value getAttValue(String att) {
-
-        return Objects.requireNonNullElse(propertyMap.get(att), new Value("none"));
+        if(propertyMap==null||propertyMap.get(att)==null){
+            return new Value("none");
+        }else {
+            return propertyMap.get(att);
+        }
     }
 
     /**
