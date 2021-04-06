@@ -70,9 +70,6 @@ public class LayoutBox {
      */
     public void layout(LayoutBox containingBlock) {
 
-        if(boxType==null){
-            return;
-        }
         switch (boxType.type) {
             case BlockNode:
                 layoutBlock(containingBlock);

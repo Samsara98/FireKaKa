@@ -17,10 +17,6 @@ public class StyledNode {
 
     public StyledNode(Node domNode, Stylesheet stylesheet) {
 
-        if (domNode == null || stylesheet == null) {
-            return;
-        }
-
         Map<String, Value> propertyMap;
         if (domNode.nodeType.equals("element")) {
             propertyMap = specifiedValues((ElementNode) domNode, stylesheet);

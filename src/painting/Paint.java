@@ -78,7 +78,7 @@ public class Paint {
         if (!op.equals("none")) {
             opacity = Integer.parseInt(op);
         }
-        if(col.equals("none")){
+        if (col.equals("none")) {
             col = "#fffffff";
         }
         Color color = new Color(Integer.parseInt(col.substring(1), 16));
@@ -98,15 +98,14 @@ public class Paint {
      */
     private String getColor(LayoutBox layoutBox, String name) {
         switch (layoutBox.boxType.type) {
+            case InlineNode:
             case BlockNode:
-
                 if (!layoutBox.boxType.styledNode.getAttValue(name).toString().equals("none")) {
                     return layoutBox.boxType.styledNode.getAttValue(name).toString();
                 } else {
                     return "none";
                 }
             case AnonymousBlock:
-            case InlineNode:
                 return "none";
         }
         return "none";
