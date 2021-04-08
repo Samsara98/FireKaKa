@@ -86,7 +86,6 @@ public class Browser extends GraphicsProgram {
         StyledNode styledRoot = new StyledNode(root, stylesheet);
         LayoutBox layoutBox = new LayoutBox(styledRoot);
         layoutBox.layoutTree(getWidth());
-        System.out.println(layoutBox);
         Paint paint = new Paint();
         Image image = paint.paint(layoutBox, CANVAS_WIDTH, CANVAS_HEIGHT);
         GImage gImage = new GImage(image);

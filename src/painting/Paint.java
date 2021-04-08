@@ -23,10 +23,10 @@ public class Paint {
      */
     public BufferedImage paint(LayoutBox layoutBoxRoot, int canvasWidth, int canvasHeight) {
 
-        ArrayList<SolidColor> displayList = buildDispalyList(layoutBoxRoot);
+        ArrayList<DispalyCommand> displayList = buildDispalyList(layoutBoxRoot);
         Canvas canvas = new Canvas(canvasWidth, canvasHeight);
-        for (SolidColor solidColor : displayList) {
-            canvas.paintItem(solidColor);
+        for (DispalyCommand dispalyCommand : displayList) {
+            canvas.paintItem(dispalyCommand);
         }
         BufferedImage image = new BufferedImage(canvasWidth, canvasHeight, BufferedImage.TYPE_INT_ARGB);
 
@@ -44,8 +44,8 @@ public class Paint {
      * @param layoutBox
      * @return
      */
-    public ArrayList<SolidColor> buildDispalyList(LayoutBox layoutBox) {
-        ArrayList<SolidColor> dispalyList = new ArrayList<>();
+    public ArrayList<DispalyCommand> buildDispalyList(LayoutBox layoutBox) {
+        ArrayList<DispalyCommand> dispalyList = new ArrayList<>();
         renderLayoutBox(dispalyList, layoutBox);
         return dispalyList;
     }
@@ -56,7 +56,7 @@ public class Paint {
      * @param dispalyList
      * @param layoutBox
      */
-    private void renderLayoutBox(ArrayList<SolidColor> dispalyList, LayoutBox layoutBox) {
+    private void renderLayoutBox(ArrayList<DispalyCommand> dispalyList, LayoutBox layoutBox) {
         renderBackground(dispalyList, layoutBox);
         renderBorders(dispalyList, layoutBox);
 
@@ -71,7 +71,7 @@ public class Paint {
      * @param dispalyList
      * @param layoutBox
      */
-    private void renderBackground(ArrayList<SolidColor> dispalyList, LayoutBox layoutBox) {
+    private void renderBackground(ArrayList<DispalyCommand> dispalyList, LayoutBox layoutBox) {
         String col = getColor(layoutBox, "background");
         String op = layoutBox.boxType.styledNode.getAttValue("opacity").toString();
         int opacity = 255;
@@ -117,7 +117,7 @@ public class Paint {
      * @param dispalyList
      * @param layoutBox
      */
-    private void renderBorders(ArrayList<SolidColor> dispalyList, LayoutBox layoutBox) {
+    private void renderBorders(ArrayList<DispalyCommand> dispalyList, LayoutBox layoutBox) {
         String col = getColor(layoutBox, "border-color");
         // 边框没颜色的话直接返回即可
         if (col.equals("none")) {

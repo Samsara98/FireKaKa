@@ -25,8 +25,8 @@ public class Canvas {
      * @param dispalyCommand
      */
     public void paintItem(DispalyCommand dispalyCommand) {
-        Rect rect = dispalyCommand.rect;
-        if (dispalyCommand.commandName.equals("SolidColor")) {
+        Rect rect = dispalyCommand.getRect();
+        if (dispalyCommand.getCommandName().equals("SolidColor")) {
             int x0 = clamp(rect.x, 0, width);
             int y0 = clamp(rect.y, 0, height);
             int x1 = clamp(rect.x + rect.width, 0, width);
@@ -34,7 +34,7 @@ public class Canvas {
 
             for (int y = y0; y < y1; y++) {
                 for (int x = x0; x < x1; x++){
-                    pixels.set(x+y*width,dispalyCommand.color);
+                    pixels.set(x+y*width,dispalyCommand.getColor());
                 }
             }
         }

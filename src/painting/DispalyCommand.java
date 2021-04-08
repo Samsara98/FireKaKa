@@ -4,18 +4,10 @@ import layout.Rect;
 
 import java.awt.*;
 
-public abstract class DispalyCommand {
+public interface DispalyCommand {
 
-    String commandName;
-    Color color;
-    Rect rect;
+    public Rect getRect();
+    public String getCommandName();
+    public Color getColor();
 
-    @Override
-    public String toString() {
-        return "DispalyCommand{" +
-                "commandName='" + commandName + '\'' +
-                ", color=" + color +
-                ", rect=" + rect +
-                '}';
-    }
 }
