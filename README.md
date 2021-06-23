@@ -5,7 +5,7 @@
 原文使用Rust语言，此项目按照原文的框架以Java实现。
 
 ## 实现功能
-![img_1.png](img_1.png)
+![img.png](img.png)
 + 解析HTML
 + 解析CSS
 + 构建Style tree
